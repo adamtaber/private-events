@@ -11,6 +11,24 @@
   </head>
 
   <body>
+  <div class="app-container">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <div class="navbar">
+      <%= link_to root_path, class: 'weblogo-link' do %>
+        <p class="weblogo">Private Events</p>
+      <% end %>
+      <div class="links">
+        <% if user_signed_in? %>
+          <%= link_to current_user.email, edit_user_registration_path, :class => 'navlink' %>
+          <%= button_to "Sign Out", destroy_user_session_path, method: :delete, :class => 'navlink' %>
+        <% else %>
+          <%= link_to "Sign Up", new_user_registration_path, :class => 'navlink' %>
+          <%= link_to "Sign In", new_user_session_path, :class => 'navlink' %>
+        <% end %>
+      </div>
+    </div>
     <%= yield %>
+    </div>
   </body>
 </html>

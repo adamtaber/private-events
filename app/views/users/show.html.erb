@@ -1,0 +1,16 @@
+<div class='home-page-body'>
+<h1 class="event-page-title">Your Events</h1>
+<% @user.created_events.each do |event| %>
+  <div class='event-box'>
+    <div class='event-title'>
+      <%= event.title %>
+    </div>
+    <div class='event-description'>
+      <%= event.description %><br>
+    </div>
+    <div class='event-date'>
+      <%= event.event_date %><br>
+    </div>
+  </div>
+<% end %>
+</div>

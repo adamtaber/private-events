@@ -1,0 +1,9 @@
+<%= form_with model: @event do |form| %>
+  <%= form.label :title, "Title:", :class => 'new-title'%>
+  <%= form.text_field :title, :class => 'new-title-form'%>
+  <%= form.label :description, "Description:", :class => 'new-content'%>
+  <%= form.text_area :description, :class => 'new-content-form'%>
+  <%= form.label :event_date, "Event Date:", :class => 'new-date'%>
+  <%= form.datetime_select :event_date%>
+  <%= form.submit :class => 'create-post-button'%>
+<% end %>
