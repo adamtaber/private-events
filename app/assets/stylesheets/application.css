@@ -66,6 +66,19 @@
 
 .home-page-body {
   display: flex;
+  justify-content: space-around;
+}
+
+.created-events {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: left;
+}
+
+.enrolled-events {
+  display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;

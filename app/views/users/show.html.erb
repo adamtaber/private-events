@@ -1,16 +1,34 @@
 <div class='home-page-body'>
-<h1 class="event-page-title">Your Events</h1>
-<% @user.created_events.each do |event| %>
+<div class='created-events'>
+  <h1 class="event-page-title">Created Events</h1>
+  <% @user.created_events.each do |event| %>
+    <div class='event-box'>
+      <div class='event-title'>
+        <%= event.title %>
+      </div>
+      <div class='event-description'>
+        <%= event.description %><br>
+      </div>
+      <div class='event-date'>
+        <%= event.event_date %><br>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class='enrolled-events'>
+  <h1 class="event-page-title">Enrolled Events</h1>
+  <% Enrollment.where(attendee_id: current_user.id).each do |enrollment| %>
   <div class='event-box'>
-    <div class='event-title'>
-      <%= event.title %>
-    </div>
-    <div class='event-description'>
-      <%= event.description %><br>
-    </div>
-    <div class='event-date'>
-      <%= event.event_date %><br>
-    </div>
+      <div class='event-title'>
+        <%= Event.find(enrollment.attended_event_id).title %>
+      </div>
+      <div class='event-description'>
+        <%= Event.find(enrollment.attended_event_id).description %>
+      </div>
+      <div class='event-date'>
+        <%= Event.find(enrollment.attended_event_id).event_date %>
+      </div>
   </div>
-<% end %>
+  <% end %>
+</div>
 </div>

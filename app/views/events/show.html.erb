@@ -1,0 +1,26 @@
+<p>Event Title: <%= @event.title %></p>
+<p>Event Description: <%= @event.description %></p>
+<p>Event Time: <%= @event.event_date %></p>
+<p>Event Host: <%= @event.creator.email %></p>
+<p>Event Attendees:<br>
+<% Enrollment.where(attended_event_id: @event.id).each do |enrollment| %>
+  <% User.all.each do |user| %>
+    <% if user.id == enrollment.attendee_id %>
+    <%= user.email %><br>
+    <% end %>
+  <% end %>
+<% end %>
+</p>
+
+<% if Enrollment.find_by(attendee_id: current_user.id, attended_event_id: @event.id) == nil %>
+  <%= button_to "Enroll", enrollments_path, params: { enrollment: { 
+  attendee_id: current_user.id, attended_event_id: @event.id }},
+  :method => :post %> 
+<% else %>
+  <%= button_to "Unenroll", enrollment_path, 
+  :method => :delete %> 
+<% end %>
+
+<% if @event.creator.id == current_user.id %>
+  <%= button_to "Delete Event", event_path, :method => :delete %>
+<% end %>
