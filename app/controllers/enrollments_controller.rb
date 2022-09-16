@@ -1,4 +1,6 @@
 class EnrollmentsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :destroy]
+
   def create
     #@enrollment = current_user.enrollments.build(enrollment_params)
     @enrollment = Enrollment.new(enrollment_params)

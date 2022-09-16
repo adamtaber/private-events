@@ -1,32 +1,33 @@
 <div class='created-events' >
+
   <h1 class="event-page-title">Upcoming Events</h1>
-    <% @events.each do |event| %>
-      <% if event.event_date >= Time.now %>
-        <div class='event-box'>
-          <%= link_to event.title, event, class:'event-title'%>
-          <div class='event-description'>
-            <%= event.description %>
-          </div>
-          <div class='event-date'>
-            <%= event.event_date %>
-          </div>
+
+    <% @events.future.each do |event| %>
+      <div class='event-box'>
+        <%= link_to event.title, event, class:'event-title'%>
+        <div class='event-description'>
+          <%= event.description %>
         </div>
-      <% end %>
+        <div class='event-date'>
+          <%= event.event_date %>
+        </div>
+      </div> 
     <% end %>
+
   <h1 class="event-page-title">Past Events</h1>
-    <% @events.each do |event| %>
-        <% if event.event_date <= Time.now %>
-          <div class='event-box'>
-            <%= link_to event.title, event, class:'event-title'%>
-            <div class='event-description'>
-              <%= event.description %>
-            </div>
-            <div class='event-date'>
-              <%= event.event_date %>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
+
+    <% @events.past.each do |event| %>
+      <div class='event-box'>
+        <%= link_to event.title, event, class:'event-title'%>
+        <div class='event-description'>
+          <%= event.description %>
+        </div>
+        <div class='event-date'>
+          <%= event.event_date %>
+        </div>
+      </div>
+    <% end %>
+    
   <%= link_to "Create New Event", new_event_path, class:'new-event-button' %>
   <%= link_to "User's Events",  current_user, class:'current-user-button'%>
 </div>

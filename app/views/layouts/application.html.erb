@@ -20,6 +20,8 @@
       <% end %>
       <div class="links">
         <% if user_signed_in? %>
+          <%= link_to "Create New Event", new_event_path, class:'navlink' %>
+          <%= link_to "Your Events",  current_user, class:'navlink'%>
           <%= link_to current_user.email, edit_user_registration_path, :class => 'navlink' %>
           <%= button_to "Sign Out", destroy_user_session_path, method: :delete, :class => 'navlink' %>
         <% else %>
